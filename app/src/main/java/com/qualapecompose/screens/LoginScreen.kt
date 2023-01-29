@@ -16,9 +16,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.qualapecompose.R
 import com.qualapecompose.Screen
-import com.qualapecompose.customViews.PrimaryMainButton
-import com.qualapecompose.customViews.MainEditText
-import com.qualapecompose.customViews.SecondaryMainButton
+import com.qualapecompose.customViews.*
 import com.qualapecompose.ui.theme.QualApeComposeTheme
 
 @Composable
@@ -33,19 +31,11 @@ fun LoginScreen(navController: NavHostController) {
                 modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp)
             ) {
                 val buttonState = remember { mutableStateOf(true) }
-                Spacer(modifier = Modifier.height(40.dp))
-                Text(
-                    text = "Você já é de casa!",
-                    style = MaterialTheme.typography.h1,
-                    color = MaterialTheme.colors.secondary
-                )
-                Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    text = "Fique à vontade",
-                    style = MaterialTheme.typography.caption,
-                    color = MaterialTheme.colors.onBackground
-                )
-                Spacer(modifier = Modifier.height(26.dp))
+                VerticalSpacer(40.dp)
+                SimpleHeader(text = "Você já é de casa!")
+                VerticalSpacer(4.dp)
+                SimpleCaption(text = "Fique à vontade")
+                VerticalSpacer(26.dp)
                 MainEditText(
                     label = "Email",
                     leadingIcon = painterResource(id = R.drawable.ic_email),
@@ -53,7 +43,7 @@ fun LoginScreen(navController: NavHostController) {
                 ) { text ->
                     text.length > 10
                 }
-                Spacer(modifier = Modifier.height(14.dp))
+                VerticalSpacer(14.dp)
                 MainEditText(
                     label = "Senha",
                     leadingIcon = painterResource(id = R.drawable.ic_password),
@@ -61,14 +51,14 @@ fun LoginScreen(navController: NavHostController) {
                 ) { text ->
                     text.length > 5
                 }
-                Spacer(modifier = Modifier.height(32.dp))
+                VerticalSpacer(32.dp)
                 PrimaryMainButton(
                     modifier = Modifier.fillMaxWidth(),
                     buttonText = "Entrar",
                     onClick = { },
                     isButtonEnabled = buttonState
                 )
-                Spacer(modifier = Modifier.height(16.dp))
+                VerticalSpacer(16.dp)
                 SecondaryMainButton(
                     modifier = Modifier.fillMaxWidth(),
                     buttonText = "Criar minha conta",

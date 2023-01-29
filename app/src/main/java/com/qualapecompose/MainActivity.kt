@@ -29,6 +29,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     QualApeComposeTheme {
-        Text("Android")
+        SetupNavGraph(navController = rememberNavController())
     }
 }

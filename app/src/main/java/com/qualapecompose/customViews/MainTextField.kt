@@ -67,7 +67,7 @@ fun MainEditText(
             Text(
                 modifier = Modifier.offset(25.dp),
                 text = it,
-                color = grey,
+                color = currentColor.value,
                 style = TextStyle(fontSize = 12.sp)
             )
         }
