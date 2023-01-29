@@ -13,7 +13,8 @@ ext {
     androidX = [
             core     : "androidx.core:core-ktx:$androidXCore",
             lifecycle: "androidx.lifecycle:lifecycle-runtime-ktx:$androidXLifecycle",
-            viewModel: "androidx.lifecycle:lifecycle-viewmodel-compose:$androidXLifecycle"
+            viewModel: "androidx.lifecycle:lifecycle-viewmodel-compose:$androidXLifecycle",
+            liveData : "androidx.lifecycle:lifecycle-livedata-ktx:$androidXLifecycle"
     ]
 
     composeUIDependencies = [

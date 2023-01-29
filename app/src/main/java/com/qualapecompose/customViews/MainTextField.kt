@@ -6,9 +6,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -16,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
@@ -36,10 +34,12 @@ fun MainEditTextPreview() {
                 .fillMaxSize()
                 .background(Color.White)
         ) {
+            val text = remember { mutableStateOf("") }
             MainEditText(
+                text = text,
                 label = "Nome",
                 leadingIcon = painterResource(id = R.drawable.ic_email),
-                placeholderText = "Digite seu nome"
+                hint = "Digite seu nome"
             ) {
                 it.length > 6
             }
@@ -51,15 +51,15 @@ fun MainEditTextPreview() {
 @Composable
 fun MainEditText(
     modifier: Modifier = Modifier,
+    text: MutableState<String>,
+    isValid: MutableState<Boolean> = mutableStateOf(true),
     label: String? = null,
     leadingIcon: Painter? = null,
     trailingIcon: Painter? = null,
-    placeholderText: String? = null,
-    validation: ((String) -> Boolean)? = null
+    hint: String? = null,
+    onTextChanged: ((String) -> Unit)? = null
 ) {
-    val text = remember { mutableStateOf(TextFieldValue()) }
     val secondaryColor = MaterialTheme.colors.secondary
-    val onBackgroundColor = MaterialTheme.colors.onBackground
     val currentColor = remember { mutableStateOf(secondaryColor) }
     val shape = RoundedCornerShape(30.dp)
     Column(modifier) {
@@ -82,9 +82,9 @@ fun MainEditText(
             value = text.value,
             onValueChange = { textFieldValue ->
                 text.value = textFieldValue
-                validation?.let { textIsValid ->
-                    currentColor.value =
-                        if (textIsValid(textFieldValue.text) || text.value.text.isEmpty())
+                onTextChanged?.let {
+                    onTextChanged.invoke(textFieldValue)
+                    currentColor.value = if (isValid.value || text.value.isEmpty())
                             secondaryColor else errorColor
                 }
             },
@@ -105,11 +105,11 @@ fun MainEditText(
                     Spacer(modifier = Modifier.width(12.dp))
                 }
                 Box {
-                    if (text.value.text.isEmpty() && placeholderText != null) {
+                    if (text.value.isEmpty() && hint != null) {
                         Text(
-                            placeholderText,
+                            hint,
                             style = LocalTextStyle.current.copy(
-                                color = onBackgroundColor,
+                                color = MaterialTheme.colors.onBackground,
                                 fontSize = 16.sp
                             )
                         )
@@ -122,5 +122,4 @@ fun MainEditText(
             }
         }
     }
-
 }
