@@ -1,12 +1,13 @@
 ext {
 
-    final composeUI = '1.2.0'
+    final composeUI = '1.3.3'
+    final composeTooling = "1.3.2"
     final activityCompose = '1.7.0-alpha03'
-    final composeMaterial = '1.2.1'
+    final composeMaterial = '1.3.1'
     final androidXJunit = '1.1.5'
     final espressoCore = '3.5.1'
     final jUnit = '4.13.2'
-    final androidXCore = '1.7.0'
+    final androidXCore = '1.9.0'
     final androidXLifecycle = '2.5.1'
     final constraintLayout = '1.1.0-alpha06'
 
@@ -18,24 +19,13 @@ ext {
     ]
 
     composeUIDependencies = [
-            activity        : "androidx.activity:activity-compose:$activityCompose",
             composeUI       : "androidx.compose.ui:ui:$composeUI",
-            preview         : "androidx.compose.ui:ui-tooling-preview:$composeUI",
+            uiTestManifest  : "androidx.compose.ui:ui-test-manifest:$composeUI",
+            uiTooling       : "androidx.compose.ui:ui-tooling:$composeTooling",
+            preview         : "androidx.compose.ui:ui-tooling-preview:$composeTooling",
             material        : "androidx.compose.material:material:$composeMaterial",
-            constraintlayout: "androidx.constraintlayout:constraintlayout-compose:$constraintLayout"
-    ]
-
-    composeUIDependencies = [
             activity        : "androidx.activity:activity-compose:$activityCompose",
-            composeUI       : "androidx.compose.ui:ui:$composeUI",
-            preview         : "androidx.compose.ui:ui-tooling-preview:$composeUI",
-            material        : "androidx.compose.material:material:$composeMaterial",
             constraintlayout: "androidx.constraintlayout:constraintlayout-compose:$constraintLayout"
-    ]
-
-    composeUITestDependencies = [
-            uiTooling     : "androidx.compose.ui:ui-tooling:$composeUI",
-            uiTestManifest: "androidx.compose.ui:ui-test-manifest:$composeUI"
     ]
 
     androidTestDependencies = [
