@@ -15,6 +15,4 @@ object AppModule {
     @Provides
     @Singleton
     fun provideAuthenticator() : FirebaseAuthenticator = FirebaseAuthenticatorImpl()
-
-
 }

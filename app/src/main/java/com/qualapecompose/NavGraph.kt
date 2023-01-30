@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.qualapecompose.login.LoginScreen
-import com.qualapecompose.screens.RegisterScreen
+import com.qualapecompose.register.RegisterScreen
 
 @Composable
 fun SetupNavGraph(

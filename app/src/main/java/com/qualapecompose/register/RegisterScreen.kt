@@ -1,4 +1,4 @@
-package com.qualapecompose.screens
+package com.qualapecompose.register
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
