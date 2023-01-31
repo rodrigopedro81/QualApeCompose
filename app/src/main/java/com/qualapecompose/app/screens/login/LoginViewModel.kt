@@ -1,5 +1,7 @@
 package com.qualapecompose.app.screens.login
 
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
 import com.authentication.FirebaseAuthenticator
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -9,6 +11,8 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val firebaseAuthenticator: FirebaseAuthenticator,
 ): ViewModel() {
+
+
 
     fun login(
         email: String,

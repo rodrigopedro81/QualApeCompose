@@ -1,6 +1,6 @@
 package com.domain.commons
 
-class Verifier {
+object Verifier {
 
     fun isWhatsappValid(string: String): Boolean =
         android.util.Patterns.PHONE.matcher(string).matches()

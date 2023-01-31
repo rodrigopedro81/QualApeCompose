@@ -1,11 +1,9 @@
-package com.qualapecompose.app.login.login
+package com.qualapecompose.app.screens.login
 
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -20,9 +18,10 @@ import com.authentication.FirebaseAuthenticator
 import com.domain.commons.Verifier
 import com.qualapecompose.R
 import com.qualapecompose.app.navigation.Screen
-import com.qualapecompose.app.screens.login.LoginViewModel
+import com.qualapecompose.app.utils.OnStateChanged
 import com.qualapecompose.designSystem.*
 import com.qualapecompose.ui.theme.QualApeComposeTheme
+import kotlinx.coroutines.flow.collect
 
 fun NavGraphBuilder.loginRoute(navController: NavHostController) {
     composable(route = Screen.Login.route) {
@@ -41,12 +40,17 @@ fun LoginScreen(
             .fillMaxSize()
             .padding(horizontal = 16.dp)
     ) {
-        val verifier = Verifier()
         val primaryButtonState = remember { mutableStateOf(false) }
         val emailText = remember { mutableStateOf("") }
         val emailIsValid = remember { mutableStateOf(false) }
         val password = remember { mutableStateOf("") }
         val passwordIsValid = remember { mutableStateOf(false) }
+        passwordIsValid.OnStateChanged {
+            primaryButtonState.value = it && emailIsValid.value
+        }
+        emailIsValid.OnStateChanged {
+            primaryButtonState.value = it && passwordIsValid.value
+        }
         VerticalSpacer(40.dp)
         SimpleHeader(text = "Você já é de casa!")
         VerticalSpacer(4.dp)
@@ -59,8 +63,7 @@ fun LoginScreen(
             leadingIcon = painterResource(id = R.drawable.ic_email),
             hint = "Digite seu e-mail",
             onTextChanged = { text ->
-                emailIsValid.value = verifier.isEmailValid(text)
-                primaryButtonState.value = emailIsValid.value && passwordIsValid.value
+                emailIsValid.value = Verifier.isEmailValid(text)
             }
         )
         VerticalSpacer(14.dp)
@@ -71,9 +74,7 @@ fun LoginScreen(
             leadingIcon = painterResource(id = R.drawable.ic_password),
             hint = "Digite sua senha",
             onTextChanged = { text ->
-                passwordIsValid.value = verifier.isPasswordValid(text)
-                primaryButtonState.value =
-                    emailIsValid.value && passwordIsValid.value
+                passwordIsValid.value = Verifier.isPasswordValid(text)
             }
         )
         VerticalSpacer(32.dp)
@@ -115,7 +116,9 @@ fun LoginPreview() {
                     email: String,
                     password: String,
                     callback: (isSuccessful: Boolean, errorMessage: String?) -> Unit
-                ) {}
+                ) {
+                }
+
                 override fun register(
                     email: String,
                     password: String,
