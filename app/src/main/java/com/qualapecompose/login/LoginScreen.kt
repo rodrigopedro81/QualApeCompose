@@ -12,12 +12,23 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.authentication.FirebaseAuthenticator
+import com.authentication.FirebaseAuthenticatorImpl
 import com.domain.commons.Verifier
 import com.qualapecompose.R
 import com.qualapecompose.Screen
 import com.qualapecompose.customViews.*
+import com.qualapecompose.ui.theme.QualApeComposeTheme
+
+fun NavGraphBuilder.loginRoute(navController: NavHostController){
+    composable(route = Screen.Login.route){
+        LoginScreen(navController)
+    }
+}
 
 @Composable
 fun LoginScreen(
@@ -94,7 +105,26 @@ fun LoginScreen(
 @Preview
 @Composable
 fun LoginPreview() {
-    LoginScreen(navController = rememberNavController())
+    QualApeComposeTheme {
+        LoginScreen(
+            navController = rememberNavController(),
+            LoginViewModel(object : FirebaseAuthenticator {
+                override fun userIsAuthenticated(): Boolean = true
+                override fun userEmail(): String = ""
+                override fun login(
+                    email: String,
+                    password: String,
+                    callback: (isSuccessful: Boolean, errorMessage: String?) -> Unit
+                ) {}
+                override fun register(
+                    email: String,
+                    password: String,
+                    callback: (isSuccessful: Boolean, errorMessage: String?) -> Unit
+                ) {
+                }
+            })
+        )
+    }
 }
 
 
