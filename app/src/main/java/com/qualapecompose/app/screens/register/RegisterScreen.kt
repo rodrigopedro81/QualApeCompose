@@ -112,12 +112,14 @@ fun RegisterScreen(
         PrimaryMainButton(
             buttonText = "Avançar",
             isButtonEnabled = primaryButtonState,
-            onClick = { }
+            onClick = {
+                // Navegar para tela de confirmar senha
+            }
         )
         VerticalSpacer(dp = 16.dp)
         SecondaryMainButton(
             buttonText = "Já tenho minha conta",
-            onClick = { }
+            onClick = { navController.popBackStack() }
         )
     }
 }
