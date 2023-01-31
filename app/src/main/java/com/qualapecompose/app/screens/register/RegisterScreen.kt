@@ -3,6 +3,7 @@ package com.qualapecompose.app.screens.register
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -60,53 +61,15 @@ fun RegisterScreen(
         VerticalSpacer(dp = 4.dp)
         SimpleCaption(text = "Seus vizinhos estão esperando por você")
         VerticalSpacer(dp = 26.dp)
-        MainEditText(
-            text = nameText,
-            label = "Nome",
-            isValid = nameIsValid,
-//            leadingIcon = painterResource(id = R.drawable.ic_email),
-            hint = "Como você se chama?",
-            onTextChanged = { nameIsValid.value = Verifier.isNameValid(it) }
-        )
+        NameEditText(nameText, nameIsValid)
         VerticalSpacer(dp = 14.dp)
-        MainEditText(
-            text = emailText,
-            label = "E-mail",
-            isValid = emailIsValid,
-//            leadingIcon = painterResource(id = R.drawable.ic_email),
-            hint = "Digite seu e-mail",
-            onTextChanged = { emailIsValid.value = Verifier.isEmailValid(it) }
-        )
+        EmailEditText(emailText, emailIsValid)
         VerticalSpacer(dp = 14.dp)
-        MainEditText(
-            text = whatsappText,
-            label = "WhatsApp",
-            isValid = whatsappIsValid,
-//            leadingIcon = painterResource(id = R.drawable.ic_email),
-            hint = "(00) 00000-0000",
-            onTextChanged = { whatsappIsValid.value = Verifier.isWhatsappValid(it) }
-        )
+        WhatsAppTextField(whatsappText, whatsappIsValid)
         VerticalSpacer(dp = 8.dp)
-        Row(modifier = Modifier.fillMaxWidth()) {
-            MainEditText(
-                modifier = Modifier.fillMaxWidth(0.5f),
-                text = apartmentText,
-                label = "Número do apê",
-                isValid = apartmentIsValid,
-//            leadingIcon = painterResource(id = R.drawable.ic_email),
-                hint = "000",
-                onTextChanged = { apartmentIsValid.value = Verifier.isApartmentValid(it) }
-            )
-            HorizontalSpacer(dp = 16.dp)
-            MainEditText(
-                modifier = Modifier.fillMaxWidth(),
-                text = blockText,
-                label = "Bloco",
-                isValid = blockIsValid,
-//            leadingIcon = painterResource(id = R.drawable.ic_email),
-                hint = "AA",
-                onTextChanged = { blockIsValid.value = Verifier.isBlockValid(it) }
-            )
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            ApartmentTextField(apartmentText, apartmentIsValid)
+            BlockTextField(blockText, blockIsValid)
         }
         VerticalSpacer(dp = 20.dp)
         PrimaryMainButton(
@@ -122,6 +85,83 @@ fun RegisterScreen(
             onClick = { navController.popBackStack() }
         )
     }
+}
+
+@Composable
+fun NameEditText(
+    nameText: MutableState<String>,
+    nameIsValid: MutableState<Boolean>
+) {
+    MainEditText(
+        text = nameText,
+        label = "Nome",
+        isValid = nameIsValid,
+//            leadingIcon = painterResource(id = R.drawable.ic_email),
+        hint = "Como você se chama?",
+        onTextChanged = { nameIsValid.value = Verifier.isNameValid(it) }
+    )
+}
+
+@Composable
+fun EmailEditText(
+    emailText: MutableState<String>,
+    emailIsValid: MutableState<Boolean>
+) {
+    MainEditText(
+        text = emailText,
+        label = "E-mail",
+        isValid = emailIsValid,
+//            leadingIcon = painterResource(id = R.drawable.ic_email),
+        hint = "Digite seu e-mail",
+        onTextChanged = { emailIsValid.value = Verifier.isEmailValid(it) }
+    )
+}
+
+@Composable
+fun WhatsAppTextField(
+    whatsappText: MutableState<String>,
+    whatsappIsValid: MutableState<Boolean>
+) {
+    MainEditText(
+        text = whatsappText,
+        label = "WhatsApp",
+        isValid = whatsappIsValid,
+//            leadingIcon = painterResource(id = R.drawable.ic_email),
+        hint = "(00) 00000-0000",
+        onTextChanged = { whatsappIsValid.value = Verifier.isWhatsappValid(it) }
+    )
+}
+
+@Composable
+fun ApartmentTextField(
+    apartmentText: MutableState<String>,
+    apartmentIsValid: MutableState<Boolean>
+) {
+    MainEditText(
+        modifier = Modifier.width(164.dp),
+        text = apartmentText,
+        label = "Número do apê",
+        isValid = apartmentIsValid,
+//            leadingIcon = painterResource(id = R.drawable.ic_email),
+        hint = "000",
+        onTextChanged = { apartmentIsValid.value = Verifier.isApartmentValid(it) }
+    )
+}
+
+@Composable
+fun BlockTextField(
+    blockText: MutableState<String>,
+    blockIsValid: MutableState<Boolean>
+) {
+    MainEditText(
+        modifier = Modifier.width(164.dp),
+        text = blockText,
+        label = "Bloco",
+        isValid = blockIsValid,
+//            leadingIcon = painterResource(id = R.drawable.ic_email),
+        hint = "AA",
+        onTextChanged = { blockIsValid.value = Verifier.isBlockValid(it) }
+    )
 }
 
 @Preview
