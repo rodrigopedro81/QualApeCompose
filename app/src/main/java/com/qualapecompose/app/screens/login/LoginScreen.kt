@@ -18,6 +18,7 @@ import com.authentication.FirebaseAuthenticator
 import com.domain.commons.Verifier
 import com.qualapecompose.R
 import com.qualapecompose.app.navigation.Screen
+import com.qualapecompose.app.utils.OnEachStateChanged
 import com.qualapecompose.app.utils.OnStateChanged
 import com.qualapecompose.designSystem.*
 import com.qualapecompose.ui.theme.QualApeComposeTheme
@@ -45,11 +46,8 @@ fun LoginScreen(
         val emailIsValid = remember { mutableStateOf(false) }
         val password = remember { mutableStateOf("") }
         val passwordIsValid = remember { mutableStateOf(false) }
-        passwordIsValid.OnStateChanged {
-            primaryButtonState.value = it && emailIsValid.value
-        }
-        emailIsValid.OnStateChanged {
-            primaryButtonState.value = it && passwordIsValid.value
+        listOf(emailIsValid, passwordIsValid).OnEachStateChanged { observedStates, _ ->
+            primaryButtonState.value = observedStates.all { it.value }
         }
         VerticalSpacer(40.dp)
         SimpleHeader(text = "Você já é de casa!")
