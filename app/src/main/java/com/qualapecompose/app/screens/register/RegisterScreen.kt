@@ -61,9 +61,9 @@ fun RegisterScreen(
         VerticalSpacer(dp = 4.dp)
         SimpleCaption(text = "Seus vizinhos estão esperando por você")
         VerticalSpacer(dp = 26.dp)
-        NameEditText(nameText, nameIsValid)
+        NameTextField(nameText, nameIsValid)
         VerticalSpacer(dp = 14.dp)
-        EmailEditText(emailText, emailIsValid)
+        EmailTextField(emailText, emailIsValid)
         VerticalSpacer(dp = 14.dp)
         WhatsAppTextField(whatsappText, whatsappIsValid)
         VerticalSpacer(dp = 8.dp)
@@ -88,7 +88,7 @@ fun RegisterScreen(
 }
 
 @Composable
-fun NameEditText(
+fun NameTextField(
     nameText: MutableState<String>,
     nameIsValid: MutableState<Boolean>
 ) {
@@ -103,7 +103,7 @@ fun NameEditText(
 }
 
 @Composable
-fun EmailEditText(
+fun EmailTextField(
     emailText: MutableState<String>,
     emailIsValid: MutableState<Boolean>
 ) {
