@@ -1,4 +1,4 @@
-package com.qualapecompose.login
+package com.qualapecompose.app.screens.login
 
 import androidx.lifecycle.ViewModel
 import com.authentication.FirebaseAuthenticator

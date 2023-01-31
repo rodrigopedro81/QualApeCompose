@@ -1,4 +1,4 @@
-package com.qualapecompose.login
+package com.qualapecompose.app.login.login
 
 import android.util.Log
 import androidx.compose.foundation.background
@@ -19,8 +19,9 @@ import androidx.navigation.compose.rememberNavController
 import com.authentication.FirebaseAuthenticator
 import com.domain.commons.Verifier
 import com.qualapecompose.R
-import com.qualapecompose.Screen
-import com.qualapecompose.customViews.*
+import com.qualapecompose.app.navigation.Screen
+import com.qualapecompose.app.screens.login.LoginViewModel
+import com.qualapecompose.designSystem.*
 import com.qualapecompose.ui.theme.QualApeComposeTheme
 
 fun NavGraphBuilder.loginRoute(navController: NavHostController) {

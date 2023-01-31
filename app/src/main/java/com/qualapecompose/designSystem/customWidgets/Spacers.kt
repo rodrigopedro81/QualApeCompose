@@ -1,4 +1,4 @@
-package com.qualapecompose.customViews
+package com.qualapecompose.designSystem
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height

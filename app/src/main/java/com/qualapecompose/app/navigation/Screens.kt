@@ -1,4 +1,4 @@
-package com.qualapecompose
+package com.qualapecompose.app.navigation
 
 sealed class Screen(val route: String) {
     object Login: Screen("login")

@@ -52,11 +52,13 @@ dependencies {
     implementation androidX.values()
     implementation composeUIDependencies.values()
     implementation dagger.values()
+    testImplementation 'junit:junit:4.12'
     debugImplementation debugDependencies.values()
     androidTestImplementation androidTestDependencies.values()
     testImplementation testDependencies.values()
     kapt daggerCompiler.values()
-
+    testImplementation "io.mockk:mockk-android:1.13.4"
+    testImplementation "io.mockk:mockk-agent:1.13.4"
     implementation 'com.google.firebase:firebase-common-ktx:20.3.0'
 }
 

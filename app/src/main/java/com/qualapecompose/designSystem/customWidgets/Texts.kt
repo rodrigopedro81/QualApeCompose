@@ -1,4 +1,4 @@
-package com.qualapecompose.customViews
+package com.qualapecompose.designSystem
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text

@@ -1,10 +1,10 @@
-package com.qualapecompose
+package com.qualapecompose.app.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.qualapecompose.login.loginRoute
-import com.qualapecompose.register.registerRoute
+import com.qualapecompose.app.login.login.loginRoute
+import com.qualapecompose.app.screens.register.registerRoute
 
 @Composable
 fun MainNavGraph(
