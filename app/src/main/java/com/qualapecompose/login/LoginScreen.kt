@@ -17,15 +17,14 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.authentication.FirebaseAuthenticator
-import com.authentication.FirebaseAuthenticatorImpl
 import com.domain.commons.Verifier
 import com.qualapecompose.R
 import com.qualapecompose.Screen
 import com.qualapecompose.customViews.*
 import com.qualapecompose.ui.theme.QualApeComposeTheme
 
-fun NavGraphBuilder.loginRoute(navController: NavHostController){
-    composable(route = Screen.Login.route){
+fun NavGraphBuilder.loginRoute(navController: NavHostController) {
+    composable(route = Screen.Login.route) {
         LoginScreen(navController)
     }
 }
