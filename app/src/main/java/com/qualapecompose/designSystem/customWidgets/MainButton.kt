@@ -26,7 +26,7 @@ fun MainButtonPreview() {
                 .fillMaxSize()
                 .background(Color.White)
         ) {
-            val buttonState = remember { mutableStateOf(true) }
+            val buttonState = true
             PrimaryMainButton(
                 modifier = Modifier.width(200.dp),
                 buttonText = "Botão primário",
@@ -49,7 +49,7 @@ fun MainButtonPreview() {
 fun PrimaryMainButton(
     modifier: Modifier = Modifier,
     buttonText: String,
-    isButtonEnabled: MutableState<Boolean>,
+    isButtonEnabled: Boolean,
     onClick: () -> Unit,
 ) {
     val disabledColor = MaterialTheme.colors.onBackground
@@ -60,7 +60,7 @@ fun PrimaryMainButton(
             .height(44.dp),
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(disabledBackgroundColor = disabledColor),
-        enabled = isButtonEnabled.value
+        enabled = isButtonEnabled
         ) {
         Row(
             modifier = Modifier
