@@ -2,12 +2,15 @@ package com.qualapecompose.app.screens.login
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Text
+import androidx.compose.material.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
@@ -30,41 +33,25 @@ fun LoginScreen(
     navController: NavHostController,
     viewModel: LoginViewModel = hiltViewModel()
 ) {
-    val emailState = viewModel.emailTextFieldState
-    val passwordState = viewModel.passwordTextFieldState
-    val loginButtonState = viewModel.loginButtonState
-
+    val loginScreenState by viewModel.uiState.collectAsStateWithLifecycle()
     LoginScreenContent(
-        buttonState = loginButtonState,
-        emailState = emailState,
-        passwordState = passwordState,
+        loginScreenState = loginScreenState,
+        onEmailChange = viewModel::updateEmail,
+        onPasswordChange = viewModel::updatePassword,
         navigateTo = { navController.navigate(it) },
         login = {
             viewModel.login { isSuccessful, errorMessage ->
-//                NAVEGAR PARA HOME
-//                navController.navigate(Screen.)
+//                if (isSuccessful) navController.navigate(Screen.Register.route) else errorMessage
             }
-        }
+        },
     )
-}
-
-@Stable
-class TextFieldState(
-    initialText: String = "",
-    onTextChange: ((state: TextFieldState, newText: String) -> Unit)? = null,
-) {
-    val isValid: MutableState<Boolean> = mutableStateOf(false)
-    val text: MutableState<String> = mutableStateOf(initialText)
-    val onTextChange: (TextFieldState, String) -> Unit = onTextChange ?: { state, newText ->
-        text.value = newText
-    }
 }
 
 @Composable
 fun LoginScreenContent(
-    buttonState: Boolean,
-    emailState: TextFieldState,
-    passwordState: TextFieldState,
+    onEmailChange: (String) -> Unit,
+    onPasswordChange: (String) -> Unit,
+    loginScreenState: LoginScreenState,
     navigateTo: (route: String) -> Unit,
     login: () -> Unit
 ) {
@@ -80,14 +67,18 @@ fun LoginScreenContent(
         SimpleCaption(text = "Fique à vontade")
         VerticalSpacer(26.dp)
         MainEditText(
-            textFieldState = emailState,
+            text = loginScreenState.emailState.text,
+            onTextChange = onEmailChange,
+            isValid = loginScreenState.emailState.isValid,
             startIcon = R.drawable.ic_email,
             hint = "Digite seu e-mail",
             label = "E-mail"
         )
         VerticalSpacer(14.dp)
         MainEditText(
-            textFieldState = passwordState,
+            text = loginScreenState.passwordState.text,
+            onTextChange = onPasswordChange,
+            isValid = loginScreenState.passwordState.isValid,
             startIcon = R.drawable.ic_password,
             hint = "Digite sua senha",
             label = "Senha"
@@ -97,7 +88,7 @@ fun LoginScreenContent(
             modifier = Modifier.fillMaxWidth(),
             buttonText = "Entrar",
             onClick = login,
-            isButtonEnabled = buttonState
+            isButtonEnabled = loginScreenState.loginButtonEnabled
         )
         VerticalSpacer(16.dp)
         SecondaryMainButton(
