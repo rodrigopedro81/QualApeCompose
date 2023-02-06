@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.qualapecompose.app.navigation.MainNavGraph
+import com.qualapecompose.app.navGraphs.MainNavGraph
 import com.qualapecompose.ui.theme.QualApeComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
 

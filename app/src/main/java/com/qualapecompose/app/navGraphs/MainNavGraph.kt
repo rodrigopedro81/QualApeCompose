@@ -1,4 +1,4 @@
-package com.qualapecompose.app.navigation
+package com.qualapecompose.app.navGraphs
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController

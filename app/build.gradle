@@ -46,8 +46,9 @@ android {
 
 dependencies {
     implementation(project(":domain"))
+    implementation(project(":data"))
     implementation(project(":authentication"))
-//    implementation androidX.values()
+
     implementation composeUIDependencies.values()
     implementation dagger.values()
     testImplementation 'junit:junit:4.12'

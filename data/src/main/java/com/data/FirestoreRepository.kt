@@ -1,14 +1,14 @@
-package com.qualapecompose.firebase.firestore
+package com.data
 
 import com.domain.entity.Food
 import com.domain.entity.Product
 import com.domain.entity.Service
-import com.domain.entity.UserInfo
+import com.domain.entity.User
 
 interface FirestoreRepository {
 
     fun saveUserData(
-        userInfo: com.domain.entity.UserInfo,
+        user: User,
         onComplete: (wasSuccessful: Boolean) -> Unit
     )
 
@@ -18,32 +18,32 @@ interface FirestoreRepository {
     )
 
     fun saveFood(
-        newFood: com.domain.entity.Food,
+        newFood: Food,
         onSuccess: () -> Unit,
         onFailure: () -> Unit
     )
 
     fun saveProduct(
-        newProduct: com.domain.entity.Product,
+        newProduct: Product,
         onSuccess: () -> Unit,
         onFailure: () -> Unit
     )
 
     fun saveService(
-        newService: com.domain.entity.Service,
+        newService: Service,
         onSuccess: () -> Unit,
         onFailure: () -> Unit
     )
 
     fun getFoods(
-        onComplete: (foodList: List<com.domain.entity.Food>?) -> Unit,
+        onComplete: (foodList: List<Food>?) -> Unit,
     )
 
     fun getServices(
-        onComplete: (serviceList: List<com.domain.entity.Service>?) -> Unit,
+        onComplete: (serviceList: List<Service>?) -> Unit,
     )
 
     fun getProducts(
-        onComplete: (productList: List<com.domain.entity.Product>?) -> Unit,
+        onComplete: (productList: List<Product>?) -> Unit,
     )
 }
