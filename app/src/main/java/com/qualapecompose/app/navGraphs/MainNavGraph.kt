@@ -3,7 +3,8 @@ package com.qualapecompose.app.navGraphs
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.qualapecompose.app.screens.login.loginRoute
+import com.authentication.Screen
+import com.authentication.login.loginRoute
 import com.authentication.register.registerRoute
 
 @Composable
