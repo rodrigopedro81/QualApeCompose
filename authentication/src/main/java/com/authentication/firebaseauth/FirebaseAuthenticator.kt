@@ -1,4 +1,4 @@
-package com.domain.authentication
+package com.authentication.firebaseauth
 
 interface FirebaseAuthenticator {
 

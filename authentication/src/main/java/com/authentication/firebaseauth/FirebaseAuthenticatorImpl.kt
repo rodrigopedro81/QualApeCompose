@@ -1,6 +1,5 @@
 package com.authentication.firebaseauth
 
-import com.domain.authentication.FirebaseAuthenticator
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 

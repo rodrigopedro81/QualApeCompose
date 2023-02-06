@@ -1,6 +1,6 @@
 package com.qualapecompose.di
 
-import com.domain.authentication.FirebaseAuthenticator
+import com.authentication.firebaseauth.FirebaseAuthenticator
 import com.authentication.firebaseauth.FirebaseAuthenticatorImpl
 import com.domain.repository.FirestoreRepository
 import com.data.FirestoreRepositoryImpl

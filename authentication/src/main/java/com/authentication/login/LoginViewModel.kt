@@ -2,7 +2,7 @@ package com.authentication.login
 
 import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel
-import com.domain.authentication.FirebaseAuthenticator
+import com.authentication.firebaseauth.FirebaseAuthenticator
 import com.domain.util.Verifier
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
