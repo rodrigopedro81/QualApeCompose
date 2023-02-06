@@ -17,14 +17,14 @@ ext {
     final lifecycleCompose = '2.6.0-alpha05'
 
     androidX = [
-            core     : "androidx.core:core-ktx:$androidXCore",
-            lifecycle: "androidx.lifecycle:lifecycle-runtime-ktx:$androidXLifecycle",
-            lifecycleCompose: "androidx.lifecycle:lifecycle-runtime-compose:$lifecycleCompose",
-            viewModel: "androidx.lifecycle:lifecycle-viewmodel-compose:$androidXLifecycle",
-            liveData : "androidx.lifecycle:lifecycle-livedata-ktx:$androidXLifecycle"
+            core            : "androidx.core:core-ktx:$androidXCore",
+            lifecycle       : "androidx.lifecycle:lifecycle-runtime-ktx:$androidXLifecycle",
+            viewModel       : "androidx.lifecycle:lifecycle-viewmodel-compose:$androidXLifecycle",
+            liveData        : "androidx.lifecycle:lifecycle-livedata-ktx:$androidXLifecycle"
     ]
 
     composeUIDependencies = [
+            lifecycleCompose: "androidx.lifecycle:lifecycle-runtime-compose:$lifecycleCompose",
             composeUI        : "androidx.compose.ui:ui:$composeUI",
             preview          : "androidx.compose.ui:ui-tooling-preview:$composeTooling",
             material         : "androidx.compose.material:material:$composeMaterial",
@@ -55,5 +55,13 @@ ext {
 
     daggerCompiler = [
             compiler: "com.google.dagger:hilt-compiler:$daggerHilt",
+    ]
+
+    firebaseAuth = [
+            auth     : "com.google.firebase:firebase-auth-ktx:21.1.0",
+    ]
+
+    firebaseFirestore = [
+            firestore: "com.google.firebase:firebase-firestore-ktx:24.4.2"
     ]
 }

@@ -1,7 +1,7 @@
 package com.qualapecompose.di
 
-import com.authentication.FirebaseAuthenticator
-import com.authentication.FirebaseAuthenticatorImpl
+import com.authentication.firebaseauth.FirebaseAuthenticator
+import com.authentication.firebaseauth.FirebaseAuthenticatorImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,5 +14,6 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideAuthenticator() : FirebaseAuthenticator = FirebaseAuthenticatorImpl()
+    fun provideAuthenticator() : FirebaseAuthenticator =
+        FirebaseAuthenticatorImpl()
 }

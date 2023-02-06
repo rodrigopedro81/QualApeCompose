@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.qualapecompose.app.screens.login.loginRoute
-import com.qualapecompose.app.screens.register.registerRoute
+import com.authentication.register.registerRoute
 
 @Composable
 fun MainNavGraph(
