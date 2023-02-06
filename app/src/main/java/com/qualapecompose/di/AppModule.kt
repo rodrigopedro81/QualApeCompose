@@ -1,8 +1,8 @@
 package com.qualapecompose.di
 
-import com.authentication.firebaseauth.FirebaseAuthenticator
+import com.domain.authentication.FirebaseAuthenticator
 import com.authentication.firebaseauth.FirebaseAuthenticatorImpl
-import com.data.FirestoreRepository
+import com.domain.repository.FirestoreRepository
 import com.data.FirestoreRepositoryImpl
 import dagger.Module
 import dagger.Provides

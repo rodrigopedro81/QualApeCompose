@@ -1,4 +1,4 @@
-package com.data
+package com.domain.repository
 
 import com.domain.entity.Food
 import com.domain.entity.Product

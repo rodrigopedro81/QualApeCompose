@@ -13,7 +13,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.authentication.firebaseauth.FirebaseAuthenticator
+import com.domain.authentication.FirebaseAuthenticator
 import com.authentication.Screen
 import com.designsystem.customWidgets.MainEditText
 import com.designsystem.R.drawable.ic_email

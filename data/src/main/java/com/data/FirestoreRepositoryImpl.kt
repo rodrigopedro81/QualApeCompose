@@ -4,6 +4,7 @@ import com.domain.entity.Food
 import com.domain.entity.Product
 import com.domain.entity.Service
 import com.domain.entity.User
+import com.domain.repository.FirestoreRepository
 import com.domain.util.Constants.ATTRIBUTE_FOOD_ID_LIST
 import com.domain.util.Constants.ATTRIBUTE_PRODUCT_ID_LIST
 import com.domain.util.Constants.ATTRIBUTE_SERVICE_ID_LIST
