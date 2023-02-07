@@ -3,154 +3,139 @@ package com.authentication.register
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.qualapecompose.app.navigation.Screen
-import com.qualapecompose.app.screens.login.TextFieldState
-import com.qualapecompose.designSystem.*
-import com.qualapecompose.designSystem.customWidgets.MainEditText
+import com.authentication.state.RegisterScreenState
+import com.domain.routes.AuthenticationScreens
+import com.designsystem.customWidgets.MainEditText
+import com.designsystem.customWidgets.PrimaryMainButton
+import com.designsystem.customWidgets.SecondaryMainButton
+import com.qualapecompose.designSystem.SimpleCaption
+import com.qualapecompose.designSystem.SimpleHeader
+import com.qualapecompose.designSystem.VerticalSpacer
 import com.qualapecompose.ui.theme.QualApeComposeTheme
 
 fun NavGraphBuilder.registerRoute(navController: NavHostController) {
-    composable(route = Screen.Register.route) {
-//        RegisterScreen(navController)
+    composable(route = AuthenticationScreens.Register.route) {
+        RegisterScreen(navController)
     }
 }
-//
-//@Composable
-//fun RegisterScreen(
-//    navController: NavHostController,
-//    viewModel: RegisterViewModel = viewModel()
-//) {
-//    val nameState = viewModel.nameTextFieldState
-//    val emailState = viewModel.emailTextFieldState
-//    val whatsappState = viewModel.whatsappTextFieldState
-//    val apartmentState = viewModel.apartmentTextFieldState
-//    val blockState = viewModel.blockTextFieldState
-//    val buttonIsEnabled = viewModel.createAccountButtonState
-//
-//    RegisterScreenContent(
-//        nameState = nameState,
-//        emailState = emailState,
-//        whatsappState = whatsappState,
-//        apartmentState = apartmentState,
-//        blockState = blockState,
-//        buttonIsEnabled = buttonIsEnabled,
-//        goBack = { navController.popBackStack() }
-//    )
-//}
-//
-//@Composable
-//fun RegisterScreenContent(
-//    nameState: TextFieldState,
-//    emailState: TextFieldState,
-//    whatsappState: TextFieldState,
-//    apartmentState: TextFieldState,
-//    blockState: TextFieldState,
-//    buttonIsEnabled: Boolean,
-//    goBack: () -> Boolean
-//) {
-//    Column(
-//        modifier = Modifier
-//            .background(Color.White)
-//            .fillMaxSize()
-//            .padding(16.dp)
-//    )
-//    {
-//        SimpleHeader(text = "Olá, morador")
-//        VerticalSpacer(dp = 4.dp)
-//        SimpleCaption(text = "Seus vizinhos estão esperando por você")
-//        VerticalSpacer(dp = 26.dp)
-//        NameTextField(nameState)
-//        VerticalSpacer(dp = 14.dp)
-//        EmailTextField(emailState)
-//        VerticalSpacer(dp = 14.dp)
-//        WhatsAppTextField(whatsappState)
-//        VerticalSpacer(dp = 8.dp)
-//        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-//            ApartmentTextField(apartmentState)
-//            BlockTextField(blockState)
-//        }
-//        VerticalSpacer(dp = 20.dp)
-//        PrimaryMainButton(
-//            buttonText = "Avançar",
-//            isButtonEnabled = buttonIsEnabled,
-//            onClick = {
-//                // Navegar para tela de confirmar senha
-//            }
-//        )
-//        VerticalSpacer(dp = 16.dp)
-//        SecondaryMainButton(
-//            buttonText = "Já tenho minha conta",
-//            onClick = { goBack() }
-//        )
-//    }
-//}
-//
-//@Composable
-//fun NameTextField(state: TextFieldState) {
-//    MainEditText(
-//        textFieldState = state,
-//        label = "Nome",
-////            leadingIcon = painterResource(id = R.drawable.ic_email),
-//        hint = "Como você se chama?",
-//    )
-//}
-//
-//@Composable
-//fun EmailTextField(state: TextFieldState) {
-//    MainEditText(
-//        textFieldState = state,
-//        label = "E-mail",
-////            leadingIcon = painterResource(id = R.drawable.ic_email),
-//        hint = "Digite seu e-mail"
-//    )
-//}
-//
-//@Composable
-//fun WhatsAppTextField(state: TextFieldState) {
-//    MainEditText(
-//        textFieldState = state,
-//        label = "WhatsApp",
-////            leadingIcon = painterResource(id = R.drawable.ic_email),
-//        hint = "(00) 00000-0000",
-//    )
-//}
-//
-//@Composable
-//fun ApartmentTextField(state: TextFieldState) {
-//    MainEditText(
-//        textFieldState = state,
-//        modifier = Modifier.width(164.dp),
-//        label = "Número do apê",
-////            leadingIcon = painterResource(id = R.drawable.ic_email),
-//        hint = "000",
-//    )
-//}
-//
-//@Composable
-//fun BlockTextField(state: TextFieldState) {
-//    MainEditText(
-//        textFieldState = state,
-//        modifier = Modifier.width(164.dp),
-//        label = "Bloco",
-////            leadingIcon = painterResource(id = R.drawable.ic_email),
-//        hint = "AA",
-//    )
-//}
-//
-//@Preview
-//@Composable
-//fun RegisterScreenPreview() {
-//    QualApeComposeTheme {
-//        RegisterScreen(navController = rememberNavController())
-//    }
-//}
+
+@Composable
+fun RegisterScreen(
+    navController: NavHostController,
+    viewModel: RegisterViewModel = hiltViewModel()
+) {
+    val registerScreenState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    RegisterScreenContent(
+        screenState = registerScreenState,
+        onNameChange = viewModel::onNameChange,
+        onEmailChange = viewModel::onEmailChange,
+        onWhatsappChange = viewModel::onWhatsappChange,
+        onApartmentChange = viewModel::onApartmentChange,
+        onBlockChange = viewModel::onBlockChange,
+        goBack = { navController.popBackStack() }
+    )
+}
+
+@Composable
+fun RegisterScreenContent(
+    screenState: RegisterScreenState,
+    onNameChange: (String) -> Unit,
+    onEmailChange: (String) -> Unit,
+    onWhatsappChange: (String) -> Unit,
+    onApartmentChange: (String) -> Unit,
+    onBlockChange: (String) -> Unit,
+    goBack: () -> Unit
+) {
+    Column(
+        modifier = Modifier
+            .background(Color.White)
+            .fillMaxSize()
+            .padding(16.dp)
+    )
+    {
+        SimpleHeader(text = "Olá, morador")
+        VerticalSpacer(dp = 4.dp)
+        SimpleCaption(text = "Seus vizinhos estão esperando por você")
+        VerticalSpacer(dp = 26.dp)
+        MainEditText(
+            isValid = screenState.nameState.isValid,
+            text = screenState.nameState.text,
+            onTextChange = onNameChange,
+            label = "Nome",
+//            leadingIcon = painterResource(id = R.drawable.ic_email),
+            hint = "Como você se chama?",
+        )
+        VerticalSpacer(dp = 14.dp)
+        MainEditText(
+            isValid = screenState.emailState.isValid,
+            text = screenState.emailState.text,
+            onTextChange = onEmailChange,
+            label = "E-mail",
+//            leadingIcon = painterResource(id = R.drawable.ic_email),
+            hint = "Digite seu e-mail"
+        )
+        VerticalSpacer(dp = 14.dp)
+        MainEditText(
+            isValid = screenState.whatsappState.isValid,
+            text = screenState.whatsappState.text,
+            onTextChange = onWhatsappChange,
+            label = "WhatsApp",
+//            leadingIcon = painterResource(id = R.drawable.ic_email),
+            hint = "(00) 00000-0000",
+        )
+        VerticalSpacer(dp = 8.dp)
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            MainEditText(
+                isValid = screenState.apartmentState.isValid,
+                text = screenState.apartmentState.text,
+                onTextChange = onApartmentChange,
+                modifier = Modifier.width(164.dp),
+                label = "Número do apê",
+//            leadingIcon = painterResource(id = R.drawable.ic_email),
+                hint = "000",
+            )
+            MainEditText(
+                isValid = screenState.blockState.isValid,
+                text = screenState.blockState.text,
+                onTextChange = onBlockChange,
+                modifier = Modifier.width(164.dp),
+                label = "Bloco",
+//            leadingIcon = painterResource(id = R.drawable.ic_email),
+                hint = "AA",
+            )
+        }
+        VerticalSpacer(dp = 20.dp)
+        PrimaryMainButton(
+            buttonText = "Avançar",
+            isButtonEnabled = screenState.advanceButtonIsEnabled,
+            onClick = {
+                // Navegar para tela de confirmar senha
+            }
+        )
+        VerticalSpacer(dp = 16.dp)
+        SecondaryMainButton(
+            buttonText = "Já tenho minha conta",
+            onClick = { goBack() }
+        )
+    }
+}
+
+@Preview
+@Composable
+fun RegisterScreenPreview() {
+    QualApeComposeTheme {
+        RegisterScreen(navController = rememberNavController())
+    }
+}

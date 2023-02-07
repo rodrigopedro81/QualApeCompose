@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -41,5 +42,6 @@ dependencies {
     implementation(project(":designsystem"))
     implementation composeUIDependencies.values()
     implementation dagger.values()
+    kapt daggerCompiler.values()
     implementation firebaseAuth.values()
 }

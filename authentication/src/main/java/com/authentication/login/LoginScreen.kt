@@ -14,7 +14,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.authentication.firebaseauth.FirebaseAuthenticator
-import com.authentication.Screen
+import com.authentication.state.LoginScreenState
+import com.domain.routes.AuthenticationScreens
 import com.designsystem.customWidgets.MainEditText
 import com.designsystem.R.drawable.ic_email
 import com.designsystem.R.drawable.ic_password
@@ -24,7 +25,7 @@ import com.qualapecompose.designSystem.*
 import com.qualapecompose.ui.theme.QualApeComposeTheme
 
 fun NavGraphBuilder.loginRoute(navController: NavHostController) {
-    composable(route = Screen.Login.route) {
+    composable(route = AuthenticationScreens.Login.route) {
         LoginScreen(navController)
     }
 }
@@ -95,7 +96,7 @@ fun LoginScreenContent(
         SecondaryMainButton(
             modifier = Modifier.fillMaxWidth(),
             buttonText = "Criar minha conta",
-            onClick = { navigateTo(Screen.Register.route) },
+            onClick = { navigateTo(AuthenticationScreens.Register.route) },
         )
     }
 }

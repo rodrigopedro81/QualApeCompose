@@ -1,25 +1,12 @@
 package com.authentication.login
 
-import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel
 import com.authentication.firebaseauth.FirebaseAuthenticator
+import com.authentication.state.LoginScreenState
 import com.domain.util.Verifier
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
-
-@Stable
-data class LoginScreenState(
-    val emailState: TextFieldState = TextFieldState(),
-    val passwordState: TextFieldState = TextFieldState(),
-    val loginButtonEnabled: Boolean = false
-)
-
-@Stable
-data class TextFieldState(
-    val text: String = "",
-    val isValid: Boolean = false,
-)
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(

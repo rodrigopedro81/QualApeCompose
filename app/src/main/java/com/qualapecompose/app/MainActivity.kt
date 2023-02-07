@@ -11,7 +11,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    val x = Unit
     lateinit var navController: NavHostController
 
     override fun onCreate(savedInstanceState: Bundle?) {
