@@ -44,7 +44,8 @@ fun RegisterScreen(
         onWhatsappChange = viewModel::onWhatsappChange,
         onApartmentChange = viewModel::onApartmentChange,
         onBlockChange = viewModel::onBlockChange,
-        goBack = { navController.popBackStack() }
+        goBack = { navController.popBackStack() },
+        advance = { navController.navigate(AuthenticationScreens.CreatePassword.route) }
     )
 }
 
@@ -56,7 +57,8 @@ fun RegisterScreenContent(
     onWhatsappChange: (String) -> Unit,
     onApartmentChange: (String) -> Unit,
     onBlockChange: (String) -> Unit,
-    goBack: () -> Unit
+    goBack: () -> Unit,
+    advance: () -> Unit
 ) {
     Column(
         modifier = Modifier
